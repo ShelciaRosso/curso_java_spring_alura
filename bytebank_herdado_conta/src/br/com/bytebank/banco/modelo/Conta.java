@@ -1,5 +1,7 @@
 package br.com.bytebank.banco.modelo;
 
+import java.util.Objects;
+
 /**
  * CLasse representa default de uma conta
  *
@@ -7,7 +9,7 @@ package br.com.bytebank.banco.modelo;
  *
  */
 
-public abstract class Conta {
+public abstract class Conta implements Comparable<Conta>{
 
     protected double saldo;
     private int agencia;
@@ -97,4 +99,14 @@ public abstract class Conta {
         return "Número: " + this.numero;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        Conta conta = (Conta) o;
+        return agencia == conta.agencia && numero == conta.numero;
+    }
+
+    @Override
+    public int compareTo(Conta o) {
+        return Double.compare(this.saldo, o.getSaldo());
+    }
 }
