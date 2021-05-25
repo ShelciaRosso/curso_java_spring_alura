@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.List, br.com.alura.gerenciador.servlet.Empresa" %>
+<%@ page import="java.util.List,br.com.alura.gerenciador.modelo.Empresa" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
@@ -10,12 +10,27 @@
 <title>Insert title here</title>
 </head>
 <body>
+	Usuário Logado: ${usuarioLogado.login} <a href="/gerenciador/entrada?acao=Logout">Sair</a>
+	
+	<br>
+	<br>
+	<br>
+	
+	<c:if test="${not empty empresa}">
+		Empresa ${empresa} cadastrada com sucesso!
+	</c:if>
+		
 	Lista de empresas: <br />
 	
 	<ul>
 		<c:forEach items="${empresas}" var="empresa">
 			<fmt:formatDate value="${empresa.dataAbertura}" pattern="dd/MM/yyyy" var="data"/>
-			<li> ${empresa.nome} - ${data}</li>
+			
+			<li> 
+				${empresa.nome} - ${data}
+				<a href="/gerenciador/entrada?acao=MostraEmpresa&id=${empresa.id}">edita</a>
+				<a href="/gerenciador/entrada?acao=RemoveEmpresa&id=${empresa.id}">remove</a>
+			</li>
 		</c:forEach>
 	</ul>
 </body>
