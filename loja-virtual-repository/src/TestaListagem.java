@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,8 +15,8 @@ public static void main(String[] args) throws SQLException {
 		ConnectionFactory conexao = new ConnectionFactory();
 		Connection connection = conexao.recuperaConexao();
 	
-		Statement stm = connection.createStatement();
-		stm.execute("select * from produto");
+		PreparedStatement stm = connection.prepareStatement("select * from produto");
+		stm.execute();
 		
 		ResultSet rst = stm.getResultSet();
 		
