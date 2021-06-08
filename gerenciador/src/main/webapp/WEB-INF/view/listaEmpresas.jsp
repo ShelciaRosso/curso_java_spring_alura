@@ -10,7 +10,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Usuário Logado: ${usuarioLogado.login} <a href="/gerenciador/entrada?acao=Logout">Sair</a>
+	<c:import url="LogoutParcial.jsp" />
+
+	Usuário Logado: ${usuarioLogado.login}
 	
 	<br>
 	<br>
